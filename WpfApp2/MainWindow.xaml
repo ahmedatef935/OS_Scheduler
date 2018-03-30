@@ -34,8 +34,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Label x:Name="label1" Content="Number of Processes" FontSize="14" Foreground="White" Grid.Column="0"/>
-                    <TextBox x:Name="nProcess" SelectionChanged="nProcess_SelectionChanged" FontSize="14" Grid.Column="1"
-                        KeyDown="OnKeyDownHandler"/>
+                    <TextBox x:Name="nProcess" SelectionChanged="nProcess_SelectionChanged" FontSize="14" Grid.Column="1"/>
                 </Grid>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -43,10 +42,10 @@
                         <ColumnDefinition Width="334*"/>
 
                     </Grid.ColumnDefinitions>
-                    <Button Content="Start Data input!"  Click="StartClick"  Height="40" Grid.Column="0" Margin="130 0 130 0" Grid.ColumnSpan="2"/>
+                    <Button Content="Start Data input!"  Click="StartClick" FontSize="14" Height="40" Grid.Column="0" Margin="130 0 130 0" Grid.ColumnSpan="2" Background="Gainsboro"/>
                 </Grid>
-
             </StackPanel>
+
         </Border>
     </ScrollViewer>
 </Window>
