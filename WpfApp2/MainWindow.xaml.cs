@@ -28,6 +28,7 @@ namespace WpfApp2
         List<TextBox> ArriveTimeTextBoxList= new List<TextBox>();
         List<TextBox> BurstTimeTextBoxList = new List<TextBox>();
         List<TextBox> PriorityTextBoxList = new List<TextBox>();
+
         private int number_process = 0;
         private void StartClick(object sender, RoutedEventArgs e)
         {
@@ -67,7 +68,7 @@ namespace WpfApp2
             }
             else
             {
-                MessageBox.Show("Hey, we need an int over here.");
+                MessageBox.Show("Hey, we need an int over here", "Invalid input");
             }
 
             Button StartSchedulingButton = new Button();
@@ -77,12 +78,11 @@ namespace WpfApp2
             StartSchedulingButton.Content = "Start Scheduling";
             StartSchedulingButton.Click += Start_scheduling_Click;
             DataFields.Children.Add(StartSchedulingButton);
-
         }
+
         List<double> ArriveTime = new List<double>();
         List<double> BurstTime = new List<double>();
         List<double> Priority = new List<double>();
-
 
         private void Start_scheduling_Click(object sender, RoutedEventArgs e)
         {
@@ -122,7 +122,7 @@ namespace WpfApp2
                 }
             }
             if (!validData)
-                MessageBox.Show("Hey, Check the arrival time, Numbers Only");
+                MessageBox.Show("Hey, Check Your input, Numbers Only", "Invalid input");
             else
             {
                 ResultWindow result = new ResultWindow();

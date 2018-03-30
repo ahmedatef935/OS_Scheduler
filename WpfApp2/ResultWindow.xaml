@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:WpfApp2"
         mc:Ignorable="d"
         Title="ResultWindow"  Height="530" Width="517" MinWidth="510" MinHeight="500">
-    <StackPanel Background="#FF5F5BAE" x:Name="DataFields">
+    <StackPanel Background="#FF5F5BAE">
+        
     </StackPanel>
 </Window>
