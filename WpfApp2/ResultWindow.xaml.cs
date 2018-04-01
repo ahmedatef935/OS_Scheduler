@@ -46,8 +46,12 @@ namespace WpfApp2
             for (var i = 0; i < numberProcess; i++)
             {
                 Process to_serve = FindNextProcess_ArriveTime(processes, numberProcess);
+                to_serve.MarkAssigned();
+
                 for (int j = 0, n = (int)(to_serve.GetBurstTime() + 0.5); j < n; i++)
                     processIDinTime.Add(to_serve.GetID());
+
+                to_serve.MarkFinished();
             }
 
             return processIDinTime;
@@ -64,7 +68,7 @@ namespace WpfApp2
                 {
                     if (current.CompareArriveTime(processes[i]) == -1) /*means that current 
                         arrived before next*/
-                    {}
+                    { }
 
                     else if (current.CompareArriveTime(processes[i]) == -1) /* they both arrived
                         at the same time*/
@@ -72,7 +76,7 @@ namespace WpfApp2
                         // we need to compare burst time of each
                         if (current.CompareBurstTime(processes[i]) == -1) /* means that current 
                             has burst time less than next*/
-                        {}
+                        { }
 
                         else /* in case they both have the same burst time or if current 
                             has burst time larger than next*/
@@ -86,6 +90,8 @@ namespace WpfApp2
                         current = processes[i];
                     }
                 }
+                else
+                    current = processes[i - 1];
             }
             return current;
         }

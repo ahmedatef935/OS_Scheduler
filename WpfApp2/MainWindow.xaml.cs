@@ -127,7 +127,7 @@ namespace WpfApp2
             {
                 ResultWindow result = new ResultWindow();
                 result.Show();
-                this.Close();
+                //this.Close();
             }
         }
 
