@@ -29,7 +29,8 @@ namespace WpfApp2
         List<TextBox> BurstTimeTextBoxList = new List<TextBox>();
         List<TextBox> PriorityTextBoxList = new List<TextBox>();
 
-        public int number_process = 0;
+        private int number_process = 0;
+
         private void StartClick(object sender, RoutedEventArgs e)
         {
             Refresh();
@@ -77,12 +78,14 @@ namespace WpfApp2
             DataFields.Children.Add(StartSchedulingButton);
         }
 
+
         List<double> ArriveTime = new List<double>();
         List<double> BurstTime = new List<double>();
         List<double> Priority = new List<double>();
 
         private void Start_scheduling_Click(object sender, RoutedEventArgs e)
         {
+
             bool validData = true;
             double test;
             foreach (TextBox singleItem in ArriveTimeTextBoxList)
@@ -170,6 +173,26 @@ namespace WpfApp2
         private void nProcess_SelectionChanged(object sender, RoutedEventArgs e)
         {
             Refresh();
+        }
+
+        public List<double> GetArriveTimeList()
+        {
+            return ArriveTime;
+        }
+
+        public List<double> GetBurstTimeList()
+        {
+            return BurstTime;
+        }
+
+        public List<double> GetPriorityList()
+        {
+            return Priority;
+        }
+
+        public int GetProcessNumber()
+        {
+            return number_process;
         }
     }
 }

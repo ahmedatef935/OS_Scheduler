@@ -23,19 +23,18 @@ namespace WpfApp2
         {
             InitializeComponent();
         }
-    }
-
-    class Process
-    {
-        Process(int a, int b, bool t)
+        private void FCFS()
         {
-            arrive = a;
-            burst = b;
-            assigned = t;
-        }
+            List<double> ArriveTime = ((MainWindow)Application.
+                Current.MainWindow).GetArriveTimeList();
+            List<double> BurstTime = ((MainWindow)Application.
+                Current.MainWindow).GetBurstTimeList();
 
-        
-	    private int arrive, burst, priority;
-        private bool assigned, finished;
-    };
+            
+            foreach (double singleItem in ArriveTime)
+            {
+                procrsses.a
+            }
+        }
+    }
 }

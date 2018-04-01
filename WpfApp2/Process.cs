@@ -73,6 +73,26 @@ namespace WpfApp2
                 return true;
         }
 
+        bool IsAssigned()
+        {
+            return assigned;
+        }
+
+        bool IsFinished()
+        {
+            return finished;
+        }
+
+        void MarkAssigned()
+        {
+            assigned = true;
+        }
+
+        void MarkFinished()
+        {
+            finished = true;
+        }
+
         private int arriveTime, burstTime, priority;
         private bool assigned, finished;
     };
