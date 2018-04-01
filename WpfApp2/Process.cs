@@ -9,35 +9,40 @@ namespace WpfApp2
     class Process
     {
 
-        Process()
+        public Process()
         {
+            id = -1;
             arriveTime = 0;
             burstTime = 0;
             assigned = false;
             finished = false;
-            priority = 0;
+            priority = -1;
         }
 
-        Process(int arrive, int burst)
+        public Process(int id, double arrive, double burst)
         {
+            this.id = id;
             arriveTime = arrive;
             burstTime = burst;
             assigned = false;
             finished = false;
-            priority = 0;
+            priority = -1;
         }
 
-        Process(int arrive, int burst, bool pAssigned, bool pFinished)
+        public Process(int id, double arrive, double burst, bool pAssigned, bool pFinished)
         {
+            this.id = id;
             arriveTime = arrive;
             burstTime = burst;
             assigned = pAssigned;
             finished = pFinished;
-            priority = 0;
+            priority = -1;
         }
 
-        Process(int arrive, int burst, int p, bool pAssigned, bool pFinished)
+        public Process(int id, double arrive, double burst, double p, 
+            bool pAssigned, bool pFinished)
         {
+            this.id = id;
             arriveTime = arrive;
             burstTime = burst;
             assigned = pAssigned;
@@ -45,7 +50,7 @@ namespace WpfApp2
             priority = p;
         }
 
-        int CompareArriveTime(Process p)
+        public int CompareArriveTime(Process p)
         {
             if (this.arriveTime < p.arriveTime)
                 return -1;
@@ -55,7 +60,7 @@ namespace WpfApp2
                 return 1;
         }
 
-        int CompareBurstTime(Process p)
+        public int CompareBurstTime(Process p)
         {
             if (this.burstTime < p.burstTime)
                 return -1;
@@ -65,7 +70,7 @@ namespace WpfApp2
                 return 1;
         }
 
-        bool CheckPriority(Process p)
+        public bool CheckPriority(Process p)
         {
             if (this.priority < p.priority)
                 return false;
@@ -73,27 +78,38 @@ namespace WpfApp2
                 return true;
         }
 
-        bool IsAssigned()
+        public double GetBurstTime()
+        {
+            return burstTime;
+        }
+
+        public int GetID()
+        {
+            return id;
+        }
+
+        public bool IsAssigned()
         {
             return assigned;
         }
 
-        bool IsFinished()
+        public bool IsFinished()
         {
             return finished;
         }
 
-        void MarkAssigned()
+        public void MarkAssigned()
         {
             assigned = true;
         }
 
-        void MarkFinished()
+        public void MarkFinished()
         {
             finished = true;
         }
 
-        private int arriveTime, burstTime, priority;
+        private int id;
+        private double arriveTime, burstTime, priority;
         private bool assigned, finished;
     };
 }
