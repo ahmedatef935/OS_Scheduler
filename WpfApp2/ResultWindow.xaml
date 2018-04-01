@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp2"
         mc:Ignorable="d"
+        Loaded="Window_Loaded"
+        Name="rootWindow"
         Title="ResultWindow"  Height="530" Width="517" MinWidth="510" MinHeight="500">
+
     <StackPanel Background="#FF5F5BAE">
-        
+
     </StackPanel>
 </Window>

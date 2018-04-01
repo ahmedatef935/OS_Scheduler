@@ -98,10 +98,6 @@ namespace WpfApp2
             {
                 TextBlock txtBlockx = new TextBlock();
                 txtBlockx.Text = n.ToString();
-
-
-
-
                 txtBlockx.FontSize = 12;
 
                 // txtBlockx.FontWeight = FontWeights.Bold;
@@ -118,7 +114,7 @@ namespace WpfApp2
 
             }
 
-
+/*
             // Add first column header
             List<string> processi = new List<string>();
 
@@ -129,9 +125,22 @@ namespace WpfApp2
 
             }
 
-
+            */
             if (ScheduleTypeIndex == 0)
             {
+                List<int> ProcessIDs = FCFS();
+                List<string> processi = new List<string>();
+                for (int q = 0; q < total; q++)
+                {
+                    processi.Add("P" + ProcessIDs[q].ToString());
+                    int n = (int)ArriveTime[0] + q;
+                    TextBlock txtBlockc = new TextBlock();
+                    txtBlockc.Text = processi[q];
+                    Grid.SetColumn(txtBlockc, n);
+                    Grid.SetRow(txtBlockc, 1);
+                    DynamicGrid.Children.Add(txtBlockc);
+                }
+                /*
                 double u = ArriveTime[0];
 
                 double y = 0;
@@ -142,13 +151,10 @@ namespace WpfApp2
                     {
 
                         TextBlock txtBlockc = new TextBlock();
-                        txtBlockc.Text = processi[q];
+                        txtBlockc.Text = "P" + ProcessIDs[q].ToString();
 
                         txtBlockc.FontSize = 14;
-
                         txtBlockc.FontWeight = FontWeights.Bold;
-
-
                         txtBlockc.Foreground = new SolidColorBrush(Colors.White);
                         txtBlockc.VerticalAlignment = VerticalAlignment.Top;
 
@@ -161,7 +167,7 @@ namespace WpfApp2
 
                     }
                     u = y;
-                }
+                }*/
             }
 
             if (ScheduleTypeIndex == 5)
@@ -193,7 +199,7 @@ namespace WpfApp2
 
             for (var i = 0; i < NumberProcess; i++)
             {
-                Process p = new Process(i, ArriveTime[i], BurstTime[i]);
+                Process p = new Process(i + 1, ArriveTime[i], BurstTime[i]);
                 processes.Add(p);
             }
            
@@ -202,7 +208,7 @@ namespace WpfApp2
                 Process to_serve = FindNextProcess_ArriveTime(processes, NumberProcess);
                 to_serve.MarkAssigned();
 
-                for (int j = 0, n = (int)(to_serve.GetBurstTime() + 0.5); j < n; i++)
+                for (int j = 0, n = (int)(to_serve.GetBurstTime() + 0.5); j < n; j++)
                     processIDinTime.Add(to_serve.GetID());
 
                 to_serve.MarkFinished();
