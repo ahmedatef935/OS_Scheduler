@@ -8,8 +8,8 @@
         Title="Scheduler" Height="530" Width="517" MinWidth="510" MinHeight="500">
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <Border Padding="20" Background="#FF786FD6">
-            <StackPanel Background="#FF5F5BAE" x:Name="DataFields">
+        <Border Padding="10" Background="#FF245DD8">
+            <StackPanel Background="#FF245DD8" x:Name="DataFields">
                 <Grid Margin="20 10 70 10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>

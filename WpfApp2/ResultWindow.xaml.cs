@@ -24,4 +24,18 @@ namespace WpfApp2
             InitializeComponent();
         }
     }
+
+    class Process
+    {
+        Process(int a, int b, bool t)
+        {
+            arrive = a;
+            burst = b;
+            assigned = t;
+        }
+
+        
+	    private int arrive, burst, priority;
+        private bool assigned, finished;
+    };
 }

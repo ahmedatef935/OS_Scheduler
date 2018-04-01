@@ -29,7 +29,7 @@ namespace WpfApp2
         List<TextBox> BurstTimeTextBoxList = new List<TextBox>();
         List<TextBox> PriorityTextBoxList = new List<TextBox>();
 
-        private int number_process = 0;
+        public int number_process = 0;
         private void StartClick(object sender, RoutedEventArgs e)
         {
             Refresh();
@@ -47,12 +47,9 @@ namespace WpfApp2
                         + i.ToString();
                     DataFields.Children.Add(processNumber);
 
-                    if (SchedulingType.SelectedIndex !=0 && /*FCFS*/
-                        SchedulingType.SelectedIndex != 5) /*Round Robin*/
-                    {
-                        Grid ArriveTime = AddGridData("Arrive at", ArriveTimeTextBoxList);
-                        DataFields.Children.Add(ArriveTime);
-                    }
+                    Grid ArriveTime = AddGridData("Arrive at", ArriveTimeTextBoxList);
+                    DataFields.Children.Add(ArriveTime);
+                    
 
                     Grid BurstTime = AddGridData("Burst Time", BurstTimeTextBoxList);
                     DataFields.Children.Add(BurstTime);
