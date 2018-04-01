@@ -194,5 +194,10 @@ namespace WpfApp2
         {
             return number_process;
         }
+
+        public int GetSchedulingTypeIndex()
+        {
+            return SchedulingType.SelectedIndex;
+        }
     }
 }
