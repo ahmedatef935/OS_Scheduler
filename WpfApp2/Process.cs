@@ -83,6 +83,11 @@ namespace WpfApp2
             return burstTime;
         }
 
+        public double GetArriveTime()
+        {
+            return arriveTime;
+        }
+
         public int GetID()
         {
             return id;

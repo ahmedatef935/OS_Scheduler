@@ -49,10 +49,17 @@ namespace WpfApp2
         int ScheduleTypeIndex = ((MainWindow)Application.
         Current.MainWindow).GetSchedulingTypeIndex();
 
+        List<Process> processes = new List<Process>();
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+
             double total = BurstTime.Sum();
+            for (var i = 0; i < NumberProcess; i++)
+            {
+                Process p = new Process(i + 1, ArriveTime[i], BurstTime[i]);
+                processes.Add(p);
+            }
 
             // Create the Grid
             Grid DynamicGrid = new Grid();
@@ -128,16 +135,20 @@ namespace WpfApp2
             */
             if (ScheduleTypeIndex == 0)
             {
-                List<int> ProcessIDs = FCFS();
+                List<int> ProcessIDs = FCFS(ref processes);
                 List<string> processi = new List<string>();
-                for (int q = 0; q < total; q++)
+                for (int q = 0, i = 0, n = ProcessIDs.Count; q < total && i < n; q++, i++)
                 {
-                    processi.Add("P" + ProcessIDs[q].ToString());
-                    int n = (int)ArriveTime[0] + q;
+                    processi.Add("P" + ProcessIDs[i].ToString());
+                    int m = (int)ArriveTime[0] + q;
                     TextBlock txtBlockc = new TextBlock();
                     txtBlockc.Text = processi[q];
-                    Grid.SetColumn(txtBlockc, n);
+                    Grid.SetColumn(txtBlockc, m);
                     Grid.SetRow(txtBlockc, 1);
+                    txtBlockc.FontSize = 14;
+                    txtBlockc.FontWeight = FontWeights.Bold;
+                    txtBlockc.Foreground = new SolidColorBrush(Colors.White);
+                    txtBlockc.VerticalAlignment = VerticalAlignment.Top;
                     DynamicGrid.Children.Add(txtBlockc);
                 }
                 /*
@@ -186,29 +197,16 @@ namespace WpfApp2
 
 
 
-
-
-
-
-
-        private List<int> FCFS()
+        private List<int> FCFS(ref List<Process> FCFS_Processes)
         {
             List<int> processIDinTime = new List<int>();
-
-            List<Process> processes = new List<Process>();
-
-            for (var i = 0; i < NumberProcess; i++)
-            {
-                Process p = new Process(i + 1, ArriveTime[i], BurstTime[i]);
-                processes.Add(p);
-            }
            
             for (var i = 0; i < NumberProcess; i++)
             {
-                Process to_serve = FindNextProcess_ArriveTime(processes, NumberProcess);
+                Process to_serve = FindNextProcess_ArriveTime(FCFS_Processes, NumberProcess);
                 to_serve.MarkAssigned();
 
-                for (int j = 0, n = (int)(to_serve.GetBurstTime() + 0.5); j < n; j++)
+                for (int j = (int)to_serve.GetArriveTime(), n = (int)(to_serve.GetBurstTime() + 0.5) + (int)to_serve.GetArriveTime(); j < n; j++)
                     processIDinTime.Add(to_serve.GetID());
 
                 to_serve.MarkFinished();
@@ -217,43 +215,50 @@ namespace WpfApp2
             return processIDinTime;
         }
 
-        private Process FindNextProcess_ArriveTime(List<Process> processes,
+        private Process FindNextProcess_ArriveTime(List<Process> ProcessList,
             int numberProcesses)
         {
-            Process current = processes[0]; // first element
+            Process current = ProcessList[0]; // first element
             for (var i = 1; i < numberProcesses; i++)
             {
-                if ((!processes[i].IsAssigned() && !processes[i].IsFinished())
-                    && (!current.IsAssigned() && !current.IsFinished()))
+                if (!current.IsAssigned() && !current.IsFinished())
                 {
-                    if (current.CompareArriveTime(processes[i]) == -1) /*means that current 
-                        arrived before next*/
-                    { }
-
-                    else if (current.CompareArriveTime(processes[i]) == -1) /* they both arrived
-                        at the same time*/
+                    if (!ProcessList[i].IsAssigned() && !ProcessList[i].IsFinished())
                     {
-                        // we need to compare burst time of each
-                        if (current.CompareBurstTime(processes[i]) == -1) /* means that current 
-                            has burst time less than next*/
+                        if (current.CompareArriveTime(ProcessList[i]) == -1) /*means that current 
+                        arrived before next*/
                         { }
 
-                        else /* in case they both have the same burst time or if current 
-                            has burst time larger than next*/
+                        else if (current.CompareArriveTime(ProcessList[i]) == -1) /* they both arrived
+                        at the same time*/
                         {
-                            current = processes[i];
-                        }
+                            // we need to compare burst time of each
+                            if (current.CompareBurstTime(ProcessList[i]) == -1) /* means that current 
+                            has burst time less than next*/
+                            { }
 
-                    }
-                    else // current arrived after next
-                    {
-                        current = processes[i];
+                            else /* in case they both have the same burst time or if current 
+                            has burst time larger than next*/
+                            {
+                                current = ProcessList[i];
+                            }
+
+                        }
+                        else // current arrived after next
+                        {
+                            current = ProcessList[i];
+                        }
                     }
                 }
                 else
-                    current = processes[i - 1];
+                    current = ProcessList[i];
             }
+
+
             return current;
         }
+
+
+
     }
 }
