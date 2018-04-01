@@ -13,7 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 namespace WpfApp2
-{
+{     
+    /// helllo 
     /// <summary>
     /// Interaction logic for ResultWindow.xaml
     /// </summary>
@@ -23,8 +24,11 @@ namespace WpfApp2
         {
             InitializeComponent();
         }
+        int y;
         private List<int> FCFS()
         {
+            
+            if ( y == 2){ }
             List<int> processIDinTime = new List<int>();
 
             List<double> ArriveTime = ((MainWindow)Application.
