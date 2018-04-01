@@ -80,6 +80,7 @@ namespace WpfApp2
 
             DynamicGrid.Background = new SolidColorBrush(Colors.Black);
             DynamicGrid.Children.Add(border);
+            
 
 
             // Create Columns
