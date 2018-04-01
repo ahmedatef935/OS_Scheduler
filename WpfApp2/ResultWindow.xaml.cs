@@ -49,7 +49,10 @@ namespace WpfApp2
         int ScheduleTypeIndex = ((MainWindow)Application.
         Current.MainWindow).GetSchedulingTypeIndex();
 
-        List<Process> processes = new List<Process>();
+        int timeQuantum = ((MainWindow)Application.
+        Current.MainWindow).GetTimeQuntum();
+
+        List <Process> processes = new List<Process>();
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -151,34 +154,6 @@ namespace WpfApp2
                     txtBlockc.VerticalAlignment = VerticalAlignment.Top;
                     DynamicGrid.Children.Add(txtBlockc);
                 }
-                /*
-                double u = ArriveTime[0];
-
-                double y = 0;
-                for (int q = 0; q < NumberProcess; q++)
-                {
-
-                    for (double i = u; i < (u + BurstTime[q]); i++)
-                    {
-
-                        TextBlock txtBlockc = new TextBlock();
-                        txtBlockc.Text = "P" + ProcessIDs[q].ToString();
-
-                        txtBlockc.FontSize = 14;
-                        txtBlockc.FontWeight = FontWeights.Bold;
-                        txtBlockc.Foreground = new SolidColorBrush(Colors.White);
-                        txtBlockc.VerticalAlignment = VerticalAlignment.Top;
-
-                        int m = (int)Math.Floor(i);
-                        Grid.SetColumn(txtBlockc, m);
-                        Grid.SetRow(txtBlockc, 1);
-                        DynamicGrid.Children.Add(txtBlockc);
-
-                        y = u + BurstTime[q];
-
-                    }
-                    u = y;
-                }*/
             }
 
             if (ScheduleTypeIndex == 5)

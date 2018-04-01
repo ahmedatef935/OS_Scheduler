@@ -28,6 +28,7 @@ namespace WpfApp2
         List<TextBox> ArriveTimeTextBoxList= new List<TextBox>();
         List<TextBox> BurstTimeTextBoxList = new List<TextBox>();
         List<TextBox> PriorityTextBoxList = new List<TextBox>();
+        List<TextBox> TimeQuantumTextBoxList = new List<TextBox>();
 
         private int number_process = 0;
 
@@ -61,8 +62,15 @@ namespace WpfApp2
                         Grid Priority = AddGridData("Priority", PriorityTextBoxList);
                         DataFields.Children.Add(Priority);
                     }
-
                 }
+
+                if (SchedulingType.SelectedIndex == 5)//Round Robin
+                {
+                    Grid TimeQuantumGrid = AddGridData("Time\nQuantum", TimeQuantumTextBoxList);
+                    TimeQuantumGrid.Margin = new Thickness(20, 50, 70, 20);
+                    DataFields.Children.Add(TimeQuantumGrid);
+                }
+
             }
             else
             {
@@ -82,12 +90,14 @@ namespace WpfApp2
         List<double> ArriveTime = new List<double>();
         List<double> BurstTime = new List<double>();
         List<double> Priority = new List<double>();
+        int timeQuntum;
 
         private void Start_scheduling_Click(object sender, RoutedEventArgs e)
         {
 
             bool validData = true;
             double test;
+            int timeQ;
             foreach (TextBox singleItem in ArriveTimeTextBoxList)
             {
                 if (double.TryParse(singleItem.Text, out test))
@@ -115,6 +125,17 @@ namespace WpfApp2
                 if (double.TryParse(singleItem.Text, out test))
                 {
                     Priority.Add(Convert.ToDouble(singleItem.Text));
+                }
+                else
+                {
+                    validData = false;
+                }
+            }
+            foreach (TextBox singleItem in TimeQuantumTextBoxList)
+            {
+                if (int.TryParse(singleItem.Text, out timeQ))
+                {
+                    timeQuntum = Convert.ToInt32(singleItem.Text);
                 }
                 else
                 {
@@ -193,6 +214,11 @@ namespace WpfApp2
         public int GetProcessNumber()
         {
             return number_process;
+        }
+
+        public int GetTimeQuntum()
+        {
+            return timeQuntum;
         }
 
         public int GetSchedulingTypeIndex()
